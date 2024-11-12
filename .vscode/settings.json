@@ -1,0 +1,11 @@
+{
+    "Codegeex.RepoIndex": true,
+    "Codegeex.CompletionDelay": 0.1,
+    "workbench.colorTheme": "Default Light Modern",
+    "workbench.preferredHighContrastColorTheme": "Default High Contrast",
+    "workbench.preferredHighContrastLightColorTheme": "Default High Contrast Light",
+    "files.associations": {
+        "ostream": "cpp"
+    },
+    "editor.fontSize": 16
+}

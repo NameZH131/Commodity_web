@@ -1,0 +1,147 @@
+/* stylesheets/flowerAdvisePage.css */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    animation: gradientChange 20s infinite alternate;
+    overflow: hidden;
+}
+
+@keyframes gradientChange {
+    0% {
+        background-image: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+
+    5% {
+        background-image: linear-gradient(135deg, #6fb2e1, #9b59b6);
+    }
+
+    10% {
+        background-image: linear-gradient(135deg, #6fb2e1, #f39c12);
+    }
+
+    15% {
+        background-image: linear-gradient(135deg, #6fb2e1, #f39c12, #9b59b6);
+    }
+
+    20% {
+        background-image: linear-gradient(135deg, #9b59b6, #f39c12);
+    }
+
+    25% {
+        background-image: linear-gradient(135deg, #9b59b6, #f39c12, #71b7e6);
+    }
+
+    30% {
+        background-image: linear-gradient(135deg, #f39c12, #71b7e6);
+    }
+
+    35% {
+        background-image: linear-gradient(135deg, #f39c12, #71b7e6, #9b59b6);
+    }
+
+    40% {
+        background-image: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+
+    45% {
+        background-image: linear-gradient(135deg, #71b7e6, #9b59b6, #f39c12);
+    }
+
+    50% {
+        background-image: linear-gradient(135deg, #9b59b6, #71b7e6);
+    }
+
+    55% {
+        background-image: linear-gradient(135deg, #9b59b6, #71b7e6, #f39c12);
+    }
+
+    60% {
+        background-image: linear-gradient(135deg, #71b7e6, #f39c12);
+    }
+
+    65% {
+        background-image: linear-gradient(135deg, #71b7e6, #f39c12, #9b59b6);
+    }
+
+    70% {
+        background-image: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+
+    75% {
+        background-image: linear-gradient(135deg, #6fb2e1, #9b59b6);
+    }
+
+    80% {
+        background-image: linear-gradient(135deg, #6fb2e1, #f39c12);
+    }
+
+    85% {
+        background-image: linear-gradient(135deg, #6fb2e1, #f39c12, #9b59b6);
+    }
+
+    90% {
+        background-image: linear-gradient(135deg, #9b59b6, #f39c12);
+    }
+
+    95% {
+        background-image: linear-gradient(135deg, #9b59b6, #f39c12, #71b7e6);
+    }
+
+    100% {
+        background-image: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+}
+
+.container {
+    background: #fff;
+    padding: 0 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    /* 让容器默认占比*/
+    transition: width 0.3s;
+    line-height: 0.5;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 94%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    /* 添加间距 */
+    width: 100%;
+    /* 按钮宽度占满 */
+}
+
+.advice-box {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+p {
+    font-size: 12px;
+}

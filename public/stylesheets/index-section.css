@@ -1,0 +1,109 @@
+/* 专门针对主页的goods样式 */
+.featured-products {
+    margin-top: 40px;
+}
+
+.featured-products .product-info {
+    background-color: #fff;
+    padding: 15px;
+}
+
+.featured-products .product-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.featured-products .product-info p {
+    font-size: 14px;
+    color: #ff5555;
+}
+
+
+
+
+
+
+
+
+/* 中间内容区域样式 */
+.main-content {
+    background-color: #f8f8f8;
+}
+
+/* 产品块样式 */
+.product-tile {
+    position: relative;
+    /* 使overlay绝对定位 */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+}
+
+/* 悬浮效果 */
+.product-tile:hover {
+    transform: scale(1.05);
+}
+
+/* 产品图片样式 */
+.product-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.product-image:hover img {
+    transform: scale(1.1);
+}
+
+/* Overlay样式 */
+.overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 212, 212, 0.7);
+    height: 10%;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    /* 默认隐藏 */
+    transition: opacity 0.3s;
+}
+
+.product-tile:hover .overlay {
+    opacity: 1;
+    /* 悬浮时显示 */
+}
+
+/* 按钮样式 */
+.btn-add,
+.btn-buy,
+.btn-cart {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-add:hover,
+.btn-buy:hover,
+.btn-cart:hover {
+    background-color: #e84118;
+}

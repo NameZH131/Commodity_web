@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我</title>
+    <link rel="stylesheet" href="stylesheets/swiper-bundle.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="icon/iconfont.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/aboutUs.css">
+
+</head>
+
+<body>
+    <header class="topper">
+        <div class="container">
+            <h1>关于我</h1>
+            <a href="/index" title="返回主页" class="iconshaking">返回主页</a>
+        </div>
+    </header>
+
+    <nav class="headBar">
+        <div class="headBarTop">
+            <div class="logo" style="margin: 0 100px;">
+                <a href="/index" title="花礼网"><img src="images/index/logo.png" alt="花礼网" width="248" height="41"></a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="main-content">
+        <div class="container">
+            <h2 class="section-title">介绍</h2>
+            <div class="about-me">
+                <p>您好！我是一名学生，热爱编程和设计。在学习和实践中，我逐渐发现自己对创造和解决问题的热情。我开始学习前端开发，希望能够将我的创意变为现实。</p>
+                <p>在这个项目中，我负责开发花礼网，这是一个旨在提供优质花卉和礼品服务的平台。通过这个项目，我希望能为用户带来便捷的购物体验，同时提升自己的技术能力。</p>
+                <p>展望未来，我希望能不断优化网站功能，增加更多用户喜欢的特色服务。我也期待通过这个平台与更多人交流，分享我的想法和经验。</p>
+                <p>感谢您阅读我的自传，希望您在花礼网能够找到您喜欢的花卉和礼品！</p>
+            </div>
+
+            <div class="like-section">
+                <button id="likeButton">点赞</button>
+                <div id="likeAnimation" class="like-animation" style="display: none;">👍</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>花礼网致力于提供优质的鲜花及礼品服务。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <p>客服电话：400-xxx-xxxx</p>
+                    <p>邮箱：service@flower.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>帮助中心</h3>
+                    <p><a href="#">常见问题</a></p>
+                    <p><a href="#">配送说明</a></p>
+                    <p><a href="#">关于我们</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>版权所有 &copy; 2024 花礼网</p>
+            </div>
+        </div>
+    </footer>
+    <% if (showWelcome==true) { %>
+        <!-- 樱花 -->
+        <script src="/javascripts/sakura.js"></script>
+        <% } %>
+            <script>
+                document.getElementById('likeButton').addEventListener('click', function (event) {
+                    const animation = document.getElementById('likeAnimation');
+                    animation.style.display = 'block'; // 显示动画
+                    animation.style.left = event.pageX + 'px'; // 根据鼠标点击位置调整动画位置
+                    animation.style.top = event.pageY + 'px';
+                    setTimeout(() => {
+                        animation.style.display = 'none'; // 动画结束后隐藏
+                    }, 500); // 动画持续时间
+                });
+            </script>
+
+</body>
+
+</html>

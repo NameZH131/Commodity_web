@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="stylesheet" href="stylesheets/swiper-bundle.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="icon/iconfont.css">
+    <!-- <link rel="stylesheet" href="stylesheets/index-section.css"> -->
+
+</head>
+
+<body>
+    <header class="topper">
+        <div class="container">
+            <div class="left" style="margin: 0 -60px;">
+                <a href="/index" title="返回首页">返回首页</a>
+                <a href="" title="关注我们" class="follow-us">关注我们</a>
+                <!-- 添加二维码div -->
+                <div class="qr-code" style="display: none;">
+                    <span
+                        style="justify-content: center;align-items: center;display: flex;font-size: 20px;font-family:微软雅黑;">加入粉丝团吧🌹</span>
+                    <img src="/images/index/关注我们.png" alt="公众号二维码" />
+                </div>
+            </div>
+            <div class="right">
+                <% if (req.session.user) { %>
+                    <a href="/userSafeSetting" title="用户安全设置" class="iconshaking iconfont icon-yonghu1">
+                        Dear<%= req.session.user.username %>[的账户安全]
+                    </a>
+                    <% } else { %>
+                        <a href="#" title="登录/注册" class="iconshaking iconfont icon-denglu">登录/注册</a>
+                        <% } %>
+                            <a href="/logOut" title="退出登录" class="iconshaking icon-tuichudenglu">退出登录</a>
+            </div>
+        </div>
+    </header>
+    <nav class="headBar">
+        <div class="headBarTop">
+            <div class="logo" style="margin: 0 100px;">
+                <a href="/index" title="花礼网"><img src="images/index/logo.png" alt="花礼网" width="248" height="41"></a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <section class="main-content">
+        <div class="container">
+            <h2>修改用户信息</h2>
+            <form action="/userInformationSettingServer" method="post">
+                <table>
+                    <tr>
+                        <td><label for="username" class="iconfont icon-yonghu1">用户名:</label></td>
+                        <td><input type="text" id="username" name="username" value="<%=user.username%>"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="user-email" class="iconfont icon-youxiang3">邮箱:</label></td>
+                        <td><input type="email" id="useremail" name="user_email" value="<%=user.email%>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="user-phone" class="iconfont icon-dianhua">电话:</label></td>
+                        <td><input type="tel" id="userphone" name="user_phone" value="<%=user.phone%>"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center;">
+                            <button type="submit">保存更改</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <%if(message){%>
+                <div class="error-message">
+                    <%= message %>
+                </div>
+                <% }%>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>花礼网致力于提供优质的鲜花及礼品服务。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <p>客服电话：400-xxx-xxxx</p>
+                    <p>邮箱：service@flower.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>帮助中心</h3>
+                    <p><a href="#">常见问题</a></p>
+                    <p><a href="#">配送说明</a></p>
+                    <p><a href="/aboutUs">关于我们</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>版权所有 &copy; 2024 花礼网</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- 引入自定义的JavaScript文件 -->
+    <script src="javascripts/index/index.js"></script>
+</body>
+
+</html>

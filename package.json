@@ -1,0 +1,25 @@
+{
+  "name": "project",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "@prisma/extension-accelerate": "^1.2.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-session": "^1.18.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.1.1",
+    "ejs": "^3.1.10",
+    "prisma": "^5.20.0"
+  }
+}

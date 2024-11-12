@@ -1,0 +1,560 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 去除小眼睛for Edge */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+  /* 对于 IE */
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  overflow-x: hidden;
+
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.topper {
+  background-color: #f5f5f5;
+  padding: 10px 0;
+}
+
+.topper .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topper a {
+  margin: 0 22px;
+}
+
+.headBar {
+  background-color: #fff;
+  border-bottom: 4px solid #ff5555;
+  /* padding: 15px 0; */
+  /* padding-bottom: 0%; */
+  position: relative;
+  /* 为弹出菜单定位 */
+}
+
+.allGoodsNavigation,
+.allGoodsNavigation a {
+  background-color: #ff5555;
+  width: 276px;
+  height: 50px;
+  color: #fff;
+  font-size: 22px;
+  text-indent: 70px;
+  line-height: 50px;
+  /* 为弹出菜单定位 */
+}
+
+.popover {
+  display: none;
+  position: absolute;
+  width: 276px;
+  top: 100%;
+  left: 120px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(255, 127, 127, 0.1);
+  border-radius: 3px;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.popover ul {
+  list-style: none;
+  /* margin: 0;
+  padding: 0; */
+}
+
+.popover li {
+  margin-bottom: 10px;
+}
+
+.popover a {
+  color: #333;
+  text-decoration: none;
+}
+
+.popover a:hover {
+  color: #000000;
+  text-shadow: 0 0 2px #dbbfbf;
+}
+
+
+/* 弹出菜单的显示与隐藏 */
+.allGoodsNavigation:hover+.popover {
+  display: block;
+}
+
+.popover:hover {
+  display: block;
+}
+
+/* .allGoodsNavigation:not(:hover):not(:focus)+.popover {
+  display: none;
+} */
+
+
+
+.headBarTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 15px 0; */
+}
+
+.logo img {
+  width: auto;
+  height: 64px;
+}
+
+
+.search {
+  display: flex;
+  /* 使用 Flexbox 布局 */
+  /* align-items: center; */
+  /* 垂直居中对齐 */
+  margin: 0 120px;
+  /* 保持外边距 */
+  /* border: #ff5555 4px solid; */
+  /* border-radius: 1px; */
+}
+
+.search_input {
+  padding: 8px;
+  flex: 1;
+  /* 使输入框占据剩余空间 */
+  border: 1px solid #ddd;
+  /* border-radius: 5px; */
+  /* 圆角 */
+
+}
+
+.search_btn {
+  padding: 8px 15px;
+  background-color: #ff5555;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.headBarDown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding-top: 15px; */
+}
+
+.navLinks ul {
+  display: flex;
+}
+
+.navLinks li {
+  margin-right: 36px;
+}
+
+.navLinks a {
+  padding: 10px;
+  margin-right: 6px;
+  position: relative;
+}
+
+/* 动画效果 */
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.navLinks a:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 500px;
+  margin-top: 20px;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-link {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px 15px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btnForLoginRegister {
+  padding: 10px 15px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* 在原有的基础上添加以下样式 */
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.footer-column h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+container .footer-bottom {
+  text-align: center;
+  font-size: 12px;
+}
+
+.main-content {
+  padding: 40px 0;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-4 {
+  width: 25%;
+  padding: 15px;
+}
+
+.product-tile {
+  background-color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.product-tile img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.product-tile h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.product-tile p {
+  font-size: 14px;
+  color: #666;
+}
+
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+    /* 放大图标 */
+  }
+
+  100% {
+    transform: scale(1);
+    /* 恢复原大小 */
+  }
+}
+
+.iconshaking {
+  /* 设置初始状态 */
+  transform: scale(1);
+  /* 设置动画属性 */
+  animation: pulse 200ms ease-in-out;
+  /* 动画持续时间为200ms */
+  /* 设置动画仅播放一次 */
+  animation-iteration-count: 1;
+  /* 设置动画在鼠标悬浮时触发 */
+  animation-fill-mode: forwards;
+}
+
+.iconshaking:hover {
+  /* 鼠标悬浮时触发动画 */
+  color: #ff5555;
+  animation: pulse 200ms ease-in-out 1;
+}
+
+/* 收藏网页 */
+#bookmarkAlert {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  z-index: 1000;
+  border-radius: 6px;
+}
+
+
+/* 关注我们 */
+.qr-code {
+  width: 180px;
+  height: 180px;
+  /* padding: 10px; */
+  background-color: #fff;
+  /* border: 1px solid #ddd; */
+  position: fixed;
+  top: 3%;
+  left: 20%;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+
+
+/* 登录注册模态背景样式 */
+.modal {
+
+  display: none;
+  /* 默认隐藏 */
+  position: fixed;
+  /* 固定定位 */
+  z-index: 1000;
+  /* 确保在最上层 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* 全屏宽度 */
+  height: 100%;
+  /* 全屏高度 */
+  overflow: auto;
+  /* 允许滚动 */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* 半透明黑色背景 */
+  backdrop-filter: blur(3px);
+  /* 背景动态模糊效果 */
+  margin: 0 auto;
+}
+
+/* 模态内容样式 */
+.modal-content {
+
+  /* 美化字体 */
+  font-family: 'Roboto', sans-serif;
+  /* 文字颜色 */
+  color: #ffffff;
+  /* background-color: #ffffff; */
+  background-image: url("../images/index/登录注册.png");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* 背景图片 */
+  margin: 10% auto;
+  /* 上下居中，左右自动 */
+  padding: 44px;
+  /* 内边距 */
+  border-radius: 10px;
+  /* 圆角边框 */
+  width: 520px;
+  /* 宽度 */
+  height: 300px;
+  /* 高度 */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  /* 阴影效果 */
+  animation: fadeIn 0.5s;
+}
+
+
+/* 关闭按钮样式 */
+.close {
+  color: #ffffff;
+  /* 关闭按钮颜色 */
+  float: right;
+  /* 右浮动 */
+  font-size: 28px;
+  /* 字体大小 */
+  font-weight: bold;
+  /* 加粗 */
+}
+
+/* 鼠标悬停效果 */
+.close:hover,
+.close:focus {
+  color: #000;
+  /* 悬停时颜色 */
+  text-decoration: none;
+  /* 无下划线 */
+  cursor: pointer;
+  /* 手型光标 */
+}
+
+/* 标签内容样式 */
+.tabcontent {
+  display: none;
+  /* 默认隐藏 */
+}
+
+/* 激活标签样式 */
+.tablinks.active {
+  background-color: #f0f0f0;
+  /* 激活标签背景色 */
+  color: #333;
+  /* 激活标签文字颜色 */
+}
+
+/* 登录注册表单样式 */
+/* form { */
+/* display: flex;
+  flex-direction: row; */
+/* } */
+
+label {
+  margin: 10px 5px;
+  /* 标签的边距 */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+  padding: 10px;
+  /* 内边距 */
+  border: 1px solid #ccc;
+  /* 边框颜色 */
+  border-radius: 5px;
+  /* 圆角边框 */
+  transition: border-color 0.3s;
+  /* 边框颜色过渡效果 */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+  /* box-shadow: 0 0 5px #fa7676; */
+  border: 1px solid #ff5555;
+  /* border-color:  #ff5555; */
+  /* 聚焦时边框颜色 */
+  outline: none;
+  /* 移除默认的聚焦轮廓 */
+}
+
+/* 提交按钮样式 */
+button {
+  padding: 10px;
+  /* 内边距 */
+  border: none;
+  /* 移除边框 */
+  border-radius: 5px;
+  /* 圆角边框 */
+  background-color: #ff5555;
+  /* 按钮背景颜色 */
+  color: #fff;
+  /* 按钮文字颜色 */
+  cursor: pointer;
+  /* 手型光标 */
+  transition: background-color 0.3s;
+  /* 背景颜色过渡效果 */
+}
+
+button:hover {
+  background-color: #0056b3;
+  /* 悬停时背景颜色 */
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    /* 开始透明度 */
+  }
+
+  to {
+    opacity: 1;
+    /* 结束透明度 */
+  }
+}
+
+
+
+
+/* 登录注册的眼睛 */
+.password-container {
+  position: relative;
+  /* 绝对定位，相对于父元素 */
+  display: flex;
+  /* 弹性布局 */
+  align-items: center;
+  /* 垂直居中 */
+}
+
+/* .password-container input { */
+/* padding-right: 30px; */
+/* 留出空间给图标 */
+/* } */
+
+.password-container i {
+  position: absolute;
+  right: 10px;
+  color: rgb(255, 147, 147);
+  /* 垂直屏幕高度1 */
+  /* z-index: 1; */
+  /* 右侧距离 */
+  cursor: pointer;
+  /* 鼠标悬停时显示手型 */
+}
+
+.password-container:hover i {
+  color: #ff5555;
+}

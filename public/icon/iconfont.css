@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4690995 */
+  src: url('iconfont.woff2?t=1727365127519') format('woff2'),
+       url('iconfont.woff?t=1727365127519') format('woff'),
+       url('iconfont.ttf?t=1727365127519') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dianhua:before {
+  content: "\e8ad";
+}
+
+.icon-youxiang3:before {
+  content: "\e7dc";
+}
+
+.icon-shezhi:before {
+  content: "\e643";
+}
+
+.icon-yonghu1:before {
+  content: "\e603";
+}
+
+.icon-yanjing-kai:before {
+  content: "\e6f9";
+}
+
+.icon-yanjing-guan:before {
+  content: "\e6fb";
+}
+
+.icon-wodekefu:before {
+  content: "\e68b";
+}
+
+.icon-lishixiao:before {
+  content: "\e8bd";
+}
+
+.icon-tuichudenglu:before {
+  content: "\e623";
+}
+
+.icon-denglu:before {
+  content: "\e656";
+}
+
+.icon-shoucang:before {
+  content: "\e68d";
+}
+
+.icon-sousuo:before {
+  content: "\e604";
+}
+
+.icon-zhanghu:before {
+  content: "\e7e5";
+}
+
+.icon-gouwuche:before {
+  content: "\e65e";
+}
+
+.icon-mima:before {
+  content: "\e8b2";
+}
+

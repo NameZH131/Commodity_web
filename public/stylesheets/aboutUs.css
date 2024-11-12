@@ -1,0 +1,56 @@
+.about-me p {
+    transition: color 0.3s ease;
+}
+
+.about-me p:hover {
+    color: #ff69b4;
+}
+
+.about-me p {
+    font-family: 'Microsoft YaHei', sans-serif;
+    color: #333;
+    font-size: 18px;
+    line-height: 2.5;
+}
+
+@keyframes shadow-animation {
+    0% {
+        text-shadow: 2px 2px 0 rgba(255, 105, 180, 0.7);
+    }
+
+    50% {
+        text-shadow: 4px 4px 0 rgba(255, 105, 180, 0.7);
+    }
+
+    100% {
+        text-shadow: 2px 2px 0 rgba(255, 105, 180, 0.7);
+    }
+}
+
+.section-title {
+    animation: shadow-animation 2s infinite;
+}
+
+.like-animation {
+    font-size: 50px;
+    position: absolute;
+    animation: scale-animation 0.5s forwards;
+    margin: 0 auto;
+}
+
+@keyframes scale-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}

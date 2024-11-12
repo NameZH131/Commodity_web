@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Error</title>
+</head>
+
+<body>
+  <h1>Error</h1>
+  <p>An error occurred while processing your request.</p>
+
+  <p>Please try again later.</p>
+
+
+  <p>If the error persists, please contact the system administrator.</p>
+  <!-- 输出问题 -->
+  <% if (error) { %>
+    <p><strong>Error:</strong>
+      <%= error %>
+    </p>
+    <% } %>
+      <!-- 输出堆栈跟踪 -->
+      <% if (error.stack) { %>
+        <p><strong>Stack trace:</strong>
+          <%= error.stack %>
+        </p>
+        <% } %>
+
+</body>
+
+</html>

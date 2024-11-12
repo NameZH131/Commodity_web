@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户安全设置</title>
+    <link rel="stylesheet" href="icon/iconfont.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <!-- <link rel="stylesheet" href="stylesheets/index-section.css"> -->
+
+
+</head>
+
+<body>
+    <header class="topper">
+        <div class="container">
+            <div class="left" style="margin: 0 -60px;">
+                <a href="/index" title="返回首页">返回首页</a>
+                <a href="/userInformationSetting" title="用户信息">⬅️用户信息</a>
+            </div>
+            <div class="right">
+                <a href="" title="账户安全" class="iconshaking iconfont icon-yonghu1">账户安全设置:Hello🥰<%=
+                        req.session.user.username%></a>
+                <a href="/logOut" title="退出登录" class="icon-tuichudenglu" class="iconshaking">退出登录</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="headBar">
+        <div class="headBarTop">
+            <div class="logo" style="margin: 0 100px;">
+                <a href="/index" title="花礼网"><img src="images/index/logo.png" alt="花礼网" width="248" height="41"></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主体内容 -->
+    <section class="main-content" style="margin: 0px 386px;">
+        <div class="container">
+            <h2>密码修改</h2>
+            <form action="/userSafeSettingServer" method="post">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="password" class="iconfont icon-mima">当前密码:</label>
+                        </td>
+                        <td>
+                            <input type="password" id="currentPassword" name="currentPassword" placeholder="请输入当前密码"
+                                required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="newPassword" class="iconfont icon-mima">新密码:</label>
+                        </td>
+                        <td>
+                            <div class="password-container">
+                                <input type="password" id="newPassword" name="newPassword" placeholder="请输入新密码"
+                                    required>
+                                <i id="registerIcon" class="iconfont icon-yanjing-guan" style="font-size: 24px;"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="confirmPassword" class="iconfont icon-mima">确认新密码:</label>
+                        </td>
+                        <td>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请再次输入新密码"
+                                required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">
+                            <button type="submit">保存修改</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <%if(message){%>
+                <div class="error-message">
+                    <%= message %>
+                </div>
+                <% }%>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>花礼网致力于提供优质的鲜花及礼品服务。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <p>客服电话：400-xxx-xxxx</p>
+                    <p>邮箱：service@flower.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>帮助中心</h3>
+                    <p><a href="#">常见问题</a></p>
+                    <p><a href="#">配送说明</a></p>
+                    <p><a href="/aboutUs">关于我们</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>版权所有 &copy; 2024 花礼网</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- 樱花 -->
+    <!-- <script src="/javascripts/sakura.js"></script> -->
+    <script>var registerEye = document.getElementById('registerIcon');
+        var registerPwd = document.getElementById('newPassword');
+        var registerFlag = 0;
+
+        registerEye.onclick = function () {
+            if (registerFlag === 0) {
+                registerPwd.type = 'text';
+                registerEye.className = 'iconfont icon-yanjing-kai';
+                registerFlag = 1;
+
+            } else {
+                registerPwd.type = 'password';
+                registerFlag = 0;
+                registerEye.className = 'iconfont icon-yanjing-guan';
+
+            }
+        }</script>
+    <!-- 引入自定义的JavaScript文件 -->
+    <!-- <script src="javascripts/index/index.js"></script> -->
+</body>
+
+</html>

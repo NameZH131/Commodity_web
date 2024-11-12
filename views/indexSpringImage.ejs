@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilibili视频嵌入</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #video-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        iframe {
+            width: 0%;
+            height: 0%;
+            transition: width 0.3s;
+            height: 0%;
+            border: none;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="video-container">
+        <iframe id="iframe"
+            src="https://www.bilibili.com/video/BV17b4y1D7og/?vd_source=45daf2cea2d0e7698bb7db0a1075636b"
+            allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const videoContainer = document.getElementById('video-container');
+        //     videoContainer.addEventListener('click', function () {
+        //         if (videoContainer.requestFullscreen) {
+        //             videoContainer.requestFullscreen();
+        //         } else if (videoContainer.mozRequestFullScreen) { // Firefox
+        //             videoContainer.mozRequestFullScreen();
+        //         } else if (videoContainer.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+        //             videoContainer.webkitRequestFullscreen();
+        //         } else if (videoContainer.msRequestFullscreen) { // IE/Edge
+        //             videoContainer.msRequestFullscreen();
+        //         }
+        //     });
+        // });
+        document.addEventListener('DOMContentLoaded', function () {
+            const videoContainer = document.getElementById('video-container');
+            const iframe = document.getElementById('iframe');
+
+            videoContainer.addEventListener('click', function () {
+                iframe.style.width = "100%";
+                iframe.style.height = "100%";
+            });
+        }); 
+    </script>
+</body>
+
+</html>

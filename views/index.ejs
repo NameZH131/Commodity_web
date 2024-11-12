@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="stylesheet" href="stylesheets/swiper-bundle.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="icon/iconfont.css">
+    <link rel="stylesheet" href="stylesheets/index-section.css">
+
+
+</head>
+
+<body>
+
+
+    <header class="topper">
+        <div class="container">
+            <div class="left" style="margin: 0 -60px;">
+                <a href="#" title="收藏花礼网" onclick="showBookmarkAlert(); return false;">收藏花礼网</a>
+                <div id="bookmarkAlert">请使用 Ctrl+D 或 Cmd+D 添加书签，或者手动在浏览器菜单中添加书签。</div>
+                <a href="/flowerAdvisePage" title="花礼品鉴">花礼品鉴</a>
+                <a href="" title="关注我们" class="follow-us">关注我们</a>
+                <!-- 添加二维码div -->
+                <div class="qr-code" style="display: none;">
+                    <span
+                        style="justify-content: center;align-items: center;display: flex;font-size: 20px;font-family:微软雅黑;">加入粉丝团吧🌹</span>
+                    <img src="/images/index/关注我们.png" alt="公众号二维码" />
+                </div>
+            </div>
+            <div class="right">
+                <% if (req.session.user) { %>
+                    <a href="/userInformationSetting" title="用户主页" class="iconshaking iconfont icon-yonghu1">
+                        Dear<%= req.session.user.username %>
+                    </a>
+                    <% } else { %>
+                        <a href="#" title="登录/注册" class="iconshaking iconfont icon-denglu">登录/注册</a>
+                        <% } %>
+                            <a href="/myFavorite" title="我的收藏" class="iconshaking iconfont icon-shoucang">我的收藏</a>
+                            <a href="#" title="我的浏览历史" class="iconshaking iconfont icon-lishixiao">我的浏览历史</a>
+                            <a href="/car" title="购物车" class="iconshaking iconfont icon-gouwuche">购物车</a>
+            </div>
+        </div>
+    </header>
+    <nav class="headBar">
+        <div class="headBarTop">
+            <div class="logo" style="margin: 0 100px;">
+                <a href="/index" title="花礼网"><img src="/images/index/logo.png" alt="花礼网" width="248" height="41"></a>
+            </div>
+            <div class="search">
+                <form action="/search" method="get">
+                    <input type="text" class="search_input" name="search_input" placeholder="请输入关键词搜索"
+                        autocomplete="on">
+                    <button type="submit" class="search_btn iconfont icon-sousuo"
+                        onclick="if($('.search_input').val()=='')return false;">搜索</button>
+                </form>
+            </div>
+        </div>
+        <div class="headBarDown" style="margin: 0 120px;">
+            <div class="allGoodsNavigation"><a href="#" title="全部商品分类">全部商品分类</a></div>
+            <!-- 在这里添加弹出菜单的HTML结构 -->
+            <div class="popover" id="popover">
+                <div class="popover-content">
+                    <h3>鲜花</h3>
+                    <ul>
+                        <li><a href="#">玫瑰</a></li>
+                        <li><a href="#">百合</a></li>
+                        <li><a href="#">康乃馨</a></li>
+                        <!-- 更多鲜花分类 -->
+                    </ul>
+                    <!-- 为其他商品分类重复上述结构 -->
+                </div>
+            </div>
+            <div class="navLinks">
+                <ul>
+                    <li><a href="/index" title="首页">首页</a></li>
+                    <li><a href="#" title="鲜花">鲜花</a></li>
+                    <li><a href="#" title="绿植">绿植</a></li>
+                    <li><a href="#" title="花瓶">花瓶</a></li>
+                    <li><a href="#" title="鲜果">鲜果</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- swiper轮播图 -->
+    <div class="swiper-container" style="margin-top: 0;">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="/images/index/slide1.jpeg" alt="图片"></div>
+            <div class="swiper-slide"><img src="/images/index/slide2.jpeg" alt="图片"></div>
+            <div class="swiper-slide"><img src="/images/index/slide3.jpeg" alt="图片"></div>
+            <div class="swiper-slide"><a href="/indexSpringImage"><img src="images/index/slide4.jpg" alt="图片"></a></div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <!-- <div class="swiper-pagination"></div> -->
+        <!-- 如果需要导航按钮 -->
+        <!-- <div class="swiper-button-prev"></div> -->
+    </div>
+
+
+    <section class="main-content">
+        <div class="container">
+            <h2 class="section-title">热门产品</h2>
+            <div class="featured-products">
+                <div class="row">
+                    <% req.session.goods.forEach(function(product) { %>
+                        <div class="col-4">
+                            <div class="product-tile">
+                                <div class="product-image">
+                                    <a href="/goodsDetail/<%= product.id %>"><img src="<%= product.image_path %>"
+                                            alt="商品展示图"></a>
+                                    <div class="overlay">
+                                        <!-- 商品图片上的叠加层，可以放置按钮等 -->
+                                        <button class="btn-add" data-product-id="<%= product.id %>">收藏</button>
+                                        <button class="btn-buy" data-product-id="<%= product.id %>">立即购买</button>
+                                    <% if (carGoods) { %>
+                                        <% const productInCart=carGoods.find(good=> product.id === good.goods_id); %>
+                                            <% const cartText=productInCart ? '已在购物车' : '加入购物车' ; %>
+                                                <button class="btn-cart" data-product-id="<%= product.id %>" <%=productInCart ? 'disabled' : '' %>><%=
+                                                        cartText %></button>
+                                                <% } else { %>
+                                                    <button class="btn-cart" data-product-id="<%= product.id %>">加入购物车</button>
+                                                    <% } %>
+
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h5>
+                                        <%= product.name %>
+                                    </h5>
+                                    <p>¥&nbsp;<%= product.price %> 原价&nbsp;<%= product.original_price %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                </div>
+            </div>
+    </section>
+
+
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>花礼网致力于提供优质的鲜花及礼品服务。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我们</h3>
+                    <p>客服电话：400-xxx-xxxx</p>
+                    <p>邮箱：service@flower.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>帮助中心</h3>
+                    <p><a href="#">常见问题</a></p>
+                    <p><a href="#">配送说明</a></p>
+                    <p><a href="/aboutUs">关于我们</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>版权所有 &copy; 2024 花礼网</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+    <!-- 登录注册模态窗口 -->
+
+    <div class="modal" id="loginModal" style="<%= showModal ? 'display: block;' : 'display: none;' %>">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="tab">
+                <button class="tablinks active" onclick="openTab(event, 'Login')">登录</button>
+                <button class="tablinks" onclick="openTab(event, 'Register')">注册</button>
+            </div>
+
+            <!-- 登录表单 -->
+            <div id="Login" class="tabcontent" style="display: block;">
+                <h3>登录</h3>
+                <form action="/login" method="post">
+                    <table>
+                        <tr>
+                            <td><label for="id" class="iconfont icon-zhanghu">账号:</label></td>
+                            <td><input type="text" id="id" name="id" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password" class="iconfont icon-mima">密码:</label></td>
+                            <td>
+                                <div class="password-container">
+                                    <input type="password" id="password" name="password" required>
+                                    <i id="loginIcon" class="iconfont icon-yanjing-guan" style="font-size: 24px;"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                <button type="submit">登录</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <% if (message) { %>
+                    <div class="error-message">
+                        <%= message %>
+                    </div>
+                    <% } %>
+            </div>
+
+            <!-- 注册表单 -->
+            <div id="Register" class="tabcontent">
+                <h3>注册</h3>
+                <form action="/register" method="post">
+                    <table>
+                        <tr>
+                            <td><label for="newId" class="iconfont icon-zhanghu">账号:</label></td>
+                            <td><input type="text" id="newId" name="newId" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="newPassword" class="iconfont icon-mima">密码:</label></td>
+                            <td>
+                                <div class="password-container">
+                                    <input type="password" id="newPassword" name="newPassword" required>
+                                    <i id="registerIcon" class="iconfont icon-yanjing-guan"
+                                        style="font-size: 24px;"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: center;">
+                                <button type="submit">注册</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <% if (message) { %>
+                    <div class="error-message">
+                        <%= message %>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="/javascripts/swiper-bundle.min.js"></script>
+
+    <script>
+        // 初始化swiper
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'horizontal',
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            }
+        });
+    </script>
+
+
+    <% if (showWelcome==true) { %>
+        <!-- 樱花 -->
+        <script src="/javascripts/sakura.js"></script>
+        <% } %>
+            <!-- 引入自定义的JavaScript文件 -->
+            <script src="javascripts/index/index.js"></script>
+
+
+            <script>
+                document.querySelectorAll('.btn-cart').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const productId = this.getAttribute('data-product-id');
+                        console.log('Adding product with ID:', productId);
+                        const productAddToCar = {
+                            productId: parseInt(productId),
+                            quantity: 1 // 默认数量为 1，也可以通过其他方式获取
+                        };
+
+
+                        // 显示加载提示
+                        const loading = document.getElementById('loading');
+                        loading.style.display = 'block';
+                        setTimeout(() => {
+                            loading.style.display = 'none';
+                        }, 15000);
+
+                        // 发送请求到后端
+                        fetch('/addToCar', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(productAddToCar)
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`Network response was not ok (${response.status}${response.statusText})`);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log(data);
+                                // 这里更新购物车图标或显示通知
+                                // 隐藏加载提示
+                                // loading.style.display = 'none';
+                                window.location.reload();
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('添加到购物车失败，请稍后再试。');
+                                // loading.style.display = 'none';
+                                window.location.reload();
+
+                            });
+                    });
+                });
+
+            </script>
+            <!-- EJS导入加载html标签 -->
+            <%- include('loading.ejs') %>
+
+
+
+                <script>
+                    // 当页面被打开时，检查标记
+                    window.addEventListener('load', function () {
+                        if (sessionStorage.getItem("needsRefresh") === "true") {
+                            // 刷新页面
+
+                            // const loading = document.getElementById('loading');
+                            // loading.style.display = 'block';
+                            // setTimeout(() => {
+                            //     loading.style.display = 'none';
+
+                            // }, 300);
+                            // sleep(100);
+
+                 
+                            location.reload();
+                            // 重置标记
+                            sessionStorage.setItem("needsRefresh", "false");
+                        }
+                    });
+
+                    // 当页面准备卸载时，设置标记
+                    window.addEventListener('beforeunload', function () {
+                        sessionStorage.setItem("needsRefresh", "true");
+                    });
+
+                </script>
+</body>
+
+</html>

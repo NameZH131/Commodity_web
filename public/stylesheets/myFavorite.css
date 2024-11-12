@@ -1,0 +1,162 @@
+/* 全局样式 */
+body {
+    font-family: 'Arial', sans-serif;
+    /* 设置默认字体为Arial，如果不可用则使用任何无衬线字体 */
+    margin: 0;
+    /* 移除body的默认外边距 */
+    padding: 0;
+    /* 移除body的默认内边距 */
+}
+
+/* 主容器样式 */
+.container {
+    max-width: 1200px;
+    /* 设置容器最大宽度，防止在大屏幕上内容过宽 */
+    margin: auto;
+    /* 使容器水平居中 */
+}
+
+/* 主标题样式 */
+h1 {
+    text-align: center;
+    /* 使标题文字居中对齐 */
+    margin-bottom: 20px;
+    /* 在标题下方添加20像素的外边距 */
+}
+
+/* 收藏列表布局 */
+.collection-list {
+    display: grid;
+    /* 使用CSS Grid布局 */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* 创建自动填充的列，每列最小200px，最大1fr（剩余空间的一份） */
+    gap: 20px;
+    /* 设置网格项之间的间隔为20像素 */
+}
+
+/* 收藏项目卡片样式 */
+.collection-item {
+    position: relative;
+    /* 设置相对定位，为绝对定位的子元素（如overlay）提供定位上下文 */
+    background-color: #fff;
+    /* 设置背景色为白色 */
+    border: 1px solid #ccc;
+    /* 添加1像素宽的浅灰色边框 */
+    border-radius: 8px;
+    /* 设置8像素的圆角 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* 添加柔和的阴影效果 */
+    padding: 10px;
+    /* 设置内边距为10像素 */
+    text-align: center;
+    /* 使内容居中对齐 */
+    overflow: hidden;
+    /* 隐藏超出卡片边界的内容 */
+    transition: transform 0.2s;
+    /* 添加变形效果的过渡动画，持续0.2秒 */
+    margin-bottom: 20px;
+    /* 在卡片下方添加20像素的外边距 */
+}
+
+/* 鼠标悬停时的卡片效果 */
+.collection-item:hover {
+    transform: scale(1.05);
+    /* 鼠标悬停时将卡片放大到原来的1.05倍 */
+}
+
+/* 卡片内图片样式 */
+.collection-item img {
+    max-width: 100%;
+    /* 确保图片不会超出卡片宽度 */
+    height: auto;
+    /* 保持图片的原始宽高比 */
+}
+
+/* 弹出层样式 */
+.overlay {
+    position: absolute;
+    /* 绝对定位，相对于.collection-item */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 这四个属性使overlay覆盖整个卡片 */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* 半透明黑色背景 */
+    color: white;
+    /* 文字颜色设为白色 */
+    display: flex;
+    /* 使用弹性布局 */
+    flex-direction: column;
+    /* 子元素垂直排列 */
+    justify-content: center;
+    /* 垂直居中对齐 */
+    align-items: center;
+    /* 水平居中对齐 */
+    opacity: 0;
+    /* 初始状态完全透明 */
+    transition: opacity 0.3s;
+    /* 添加透明度变化的过渡效果，持续0.3秒 */
+}
+
+/* 鼠标悬停时显示弹出层 */
+.collection-item:hover .overlay {
+    opacity: 1;
+    /* 鼠标悬停时设置为完全不透明 */
+}
+
+/* 按钮基础样式 */
+.btn-remove,
+.btn-add,
+.btn-buy,
+.btn-details {
+    border: none;
+    /* 移除边框 */
+    padding: 10px 20px;
+    /* 设置内边距，上下10px，左右20px */
+    margin: 5px 0;
+    /* 设置上下外边距为5px，左右为0 */
+    border-radius: 5px;
+    /* 添加5像素的圆角 */
+    cursor: pointer;
+    /* 鼠标悬停时显示手型光标 */
+    color: white;
+    /* 按钮文字颜色为白色 */
+    transition: background-color 0.3s;
+    /* 添加背景色变化的过渡效果，持续0.3秒 */
+}
+
+/* 移除按钮样式 */
+.btn-remove {
+    background-color: #e74c3c;
+    /* 设置背景色为红色 */
+}
+
+.btn-remove:hover {
+    background-color: #c0392b;
+    /* 鼠标悬停时变为深红色 */
+}
+
+/* 添加和购买按钮样式 */
+.btn-add,
+.btn-buy {
+    background-color: #3498db;
+    /* 设置背景色为蓝色 */
+}
+
+.btn-add:hover,
+.btn-buy:hover {
+    background-color: #2980b9;
+    /* 鼠标悬停时变为深蓝色 */
+}
+
+/* 详情按钮样式 */
+.btn-details {
+    background-color: #f39c12;
+    /* 设置背景色为橙色 */
+}
+
+.btn-details:hover {
+    background-color: #e67e22;
+    /* 鼠标悬停时变为深橙色 */
+}

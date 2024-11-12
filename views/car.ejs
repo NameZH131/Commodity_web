@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车</title>
+    <link rel="stylesheet" href="icon/iconfont.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/car.css">
+
+</head>
+
+<body>
+
+
+    <header class="topper">
+        <div class="container">
+            <div class="left" style="margin: 0 -60px;">
+                <a href="/flowerAdvisePage" title="花礼品鉴">花礼品鉴</a>
+                <a href="/index" title="返回主页">⬅️返回主页</a>
+
+            </div>
+            <div class="right">
+                <% if (req.session.user) { %>
+                    <a href="/userInformationSetting" title="用户主页" class="iconshaking iconfont icon-yonghu1">
+                        Dear<%= req.session.user.username %>
+                    </a>
+                    <% } else { %>
+                        <a href="#" title="登录/注册" class="iconshaking iconfont icon-denglu">登录/注册</a>
+                        <% } %>
+                            <a href="/myFavorite" title="我的收藏" class="iconshaking iconfont icon-shoucang">我的收藏</a>
+                            <a href="#" title="我的浏览历史" class="iconshaking iconfont icon-lishixiao">我的浏览历史</a>
+            </div>
+        </div>
+    </header>
+    <nav class="headBar">
+        <div class="headBarTop">
+            <div class="logo" style="margin: 0 100px;">
+                <a href="/index" title="花礼网"><img src="images/index/logo.png" alt="花礼网" width="248" height="41"></a>
+            </div>
+            <div class="search">
+                <form action="/search" method="get">
+                    <input type="text" class="search_input" name="search_input" placeholder="请输入关键词搜索"
+                        autocomplete="on">
+                    <button type="submit" class="search_btn iconfont icon-sousuo"
+                        onclick="if($('.search_input').val()=='')return false;">搜索</button>
+                </form>
+            </div>
+        </div>
+
+    </nav>
+
+
+    <% if (req.session.user) { %>
+        <section class="cart-content">
+            <h2>我的购物车</h2>
+            <ul class="product-list">
+                <% if (req.session.carGoods && req.session.carGoods.length> 0) { %>
+                    <% req.session.carGoods.forEach(function(product) { var good=req.session.goods.find(g=> g.id ===
+                        product.goods_id);
+                        if (good) { %>
+                        <li class="product-item" data-product-id="<%= product.goods_id %>">
+                            <input type="checkbox" class="product-checkbox" <%=product.selected ? 'checked' : '' %>>
+                            <img src="<%= good.image_path %>" alt="Product <%= good.goods_id %>" width="100">
+                            <h3>
+                                <%= good.name %>
+                            </h3>
+                    
+                            <% let priceDisplay='错误（价格无效）' ; // 默认错误消息 if (good && typeof good.price==='number' && !isNaN(good.price)) {
+                                priceDisplay=parseFloat(good.price) // 如果 price 是一个有效的数字，则格式化它 } %>
+                                <p>价格: ¥<%= priceDisplay %>
+                                </p>
+
+                 
+                            <div class="quantity">
+                                <button class="btn-decrease">-</button>
+                                <input type="number" value="<%= product.quantity %>" class="product-quantity" min="0">
+                                <button class="btn-increase">+</button>
+                            </div>
+                            <button class="delete-btn">删除</button>
+                        </li>
+                        <% } %>
+                            <% }); %>
+                                <% } else { %>
+                                    <li class="empty-cart">购物车是空的，快去挑选商品吧！</li>
+                                    <% } %>
+            </ul>
+            <div class="cart-summary">
+                <p>选中商品总价: ¥<span id="totalPrice">0.00</span></p>
+                <p>选中商品数量: <span id="totalQuantity">0</span></p>
+                <button class="btn-checkout">结算</button>
+            </div>
+        </section>
+        <% } else { %>
+            <section class="cart-content">
+                <h2>我的购物车</h2>
+                <ul class="product-list">
+                    <li class="product-item">请先登录哦！</li>
+                </ul>
+            </section>
+            <% } %>
+
+
+
+
+
+                <!-- 页脚 -->
+                <footer class="footer">
+                    <div class="container">
+                        <div class="footer-top">
+                            <div class="footer-column">
+                                <h3>关于我们</h3>
+                                <p>花礼网致力于提供优质的鲜花及礼品服务。</p>
+                            </div>
+                            <div class="footer-column">
+                                <h3>联系我们</h3>
+                                <p>客服电话：400-xxx-xxxx</p>
+                                <p>邮箱：service@flower.com</p>
+                            </div>
+                            <div class="footer-column">
+                                <h3>帮助中心</h3>
+                                <p><a href="#">常见问题</a></p>
+                                <p><a href="#">配送说明</a></p>
+                                <p><a href="/aboutUs">关于我们</a></p>
+                            </div>
+                        </div>
+                        <div class="footer-bottom">
+                            <p>版权所有 &copy; 2024 花礼网</p>
+                        </div>
+                    </div>
+                </footer>
+
+
+
+                <!-- 登录注册模态窗口 -->
+
+                <div class="modal" id="loginModal" style="<%= showModal ? 'display: block' : 'display: none' %>">
+                    <div class="modal-content">
+                        <span class="close" id="closeModal">&times;</span>
+                        <div class="tab">*
+                            <button class="tablinks active" onclick="openTab(event, 'Login')">登录</button>
+                            <button class="tablinks" onclick="openTab(event, 'Register')">注册</button>
+                        </div>
+
+                        <!-- 登录表单 -->
+                        <div id="Login" class="tabcontent" style="display: block;">
+                            <h3>登录</h3>
+                            <form action="/login" method="post">
+                                <table>
+                                    <tr>
+                                        <td><label for="id" class="iconfont icon-zhanghu">账号:</label></td>
+                                        <td><input type="text" id="id" name="id" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="password" class="iconfont icon-mima">密码:</label></td>
+                                        <td>
+                                            <div class="password-container">
+                                                <input type="password" id="password" name="password" required>
+                                                <i id="loginIcon" class="iconfont icon-yanjing-guan"
+                                                    style="font-size: 24px;"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center;">
+                                            <button type="submit">登录</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <% if (message) { %>
+                                <div class="error-message">
+                                    <%= message %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <!-- 注册表单 -->
+                        <div id="Register" class="tabcontent">
+                            <h3>注册</h3>
+                            <form action="/register" method="post">
+                                <table>
+                                    <tr>
+                                        <td><label for="newId" class="iconfont icon-zhanghu">账号:</label></td>
+                                        <td><input type="text" id="newId" name="newId" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="newPassword" class="iconfont icon-mima">密码:</label></td>
+                                        <td>
+                                            <div class="password-container">
+                                                <input type="password" id="newPassword" name="newPassword" required>
+                                                <i id="registerIcon" class="iconfont icon-yanjing-guan"
+                                                    style="font-size: 24px;"></i>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="text-align: center;">
+                                            <button type="submit">注册</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <% if (message) { %>
+                                <div class="error-message">
+                                    <%= message %>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <script>
+                    // 获取所有产品项计算总价和总数量
+                    const productItems = document.querySelectorAll('.product-item');
+                    const totalPriceElement = document.getElementById('totalPrice');
+                    const totalQuantityElement = document.getElementById('totalQuantity');
+
+                    function updateCartSummary() {
+                        let totalPrice = 0;
+                        let totalQuantity = 0;
+
+                        productItems.forEach(item => {
+                            const checkbox = item.querySelector('.product-checkbox');
+                            const price = parseFloat(item.querySelector('p').textContent.replace('价格: ¥', ''));
+                            const quantity = parseInt(item.querySelector('input[type="number"]').value);
+
+                            if (checkbox.checked) {
+                                totalPrice += price * quantity;
+                                totalQuantity += quantity;
+                            }
+                        });
+
+                        totalPriceElement.textContent = totalPrice.toFixed(2);
+                        totalQuantityElement.textContent = totalQuantity;
+                    }
+
+                    productItems.forEach(item => {
+                        const checkbox = item.querySelector('.product-checkbox');
+                        checkbox.addEventListener('change', updateCartSummary);
+
+                        const quantityInput = item.querySelector('input[type="number"]');
+                        quantityInput.addEventListener('change', updateCartSummary);
+                    });
+
+                    // 绑定减少和增加按钮的功能
+                    document.querySelectorAll('.btn-decrease').forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            const quantityInput = event.target.nextElementSibling;
+                            if (quantityInput.value > 1) {
+                                quantityInput.value--;
+                                updateCartSummary();
+                            }
+                        });
+                    });
+
+                    document.querySelectorAll('.btn-increase').forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            const quantityInput = event.target.previousElementSibling;
+                            quantityInput.value++;
+                            updateCartSummary();
+                        });
+                    });
+                    // 绑定删除按钮的功能
+                    document.querySelectorAll('.delete-btn').forEach(function (button) {
+                        button.addEventListener('click', function () {
+                            const productItem = this.closest('.product-item');
+                            productItem.remove(); // 移除商品元素
+                            updateCartSummary(); // 更新总价和总数量
+                        });
+                    });
+
+                </script>
+
+
+
+                <!-- 删更新 session.carGoods 数据和提交购物车商品的数据到服务器的sesion.user.id的用户。 -->
+                <script>
+                    // 函数用于获取所有购物车商品的信息
+                    function getCarGoods() {
+                        const newCarGoods = [];
+                        const productItems = document.querySelectorAll('.product-item');
+                        // 获取用户id
+                       <% if (req.session.user && req.session.user.id) { %>
+    const userId = <%= req.session.user.id %>;
+<% } else { %>
+    // const userId = null; // 或者重定向到登录页面
+    return;
+<% } %>
+
+
+                            productItems.forEach(item => {
+                                const goodsId = item.getAttribute('data-product-id'); // 获取商品 ID
+                                const checkbox = item.querySelector('.product-checkbox');
+                                const quantityInput = item.querySelector('.product-quantity');
+                                const quantity = parseInt(quantityInput.value); // 获取商品数量
+                                const selected = checkbox.checked; // 获取商品选中状态
+
+                                // 创建商品对象并添加到数组中
+                                newCarGoods.push({
+                                    user_id: userId,
+                                    goods_id: parseInt(goodsId),
+                                    quantity: parseInt(quantity),
+                                    selected: selected
+                                });
+                            });
+
+                        return newCarGoods;
+                    }
+
+
+                    // 在页面卸载事件中调用函数并发送数据到服务器
+                    function sendDataToServer() {
+
+                        const carGoods = getCarGoods(); // 获取购物车商品信息
+                        const jsonArray = JSON.stringify(carGoods); // 将对象数组转换为 JSON 字符串
+
+                        //  // 显示加载提示
+                        // const loading = document.getElementById('loading');
+                        // loading.style.display = 'block';
+                        // setTimeout(() => {
+                        //     loading.style.display = 'none';
+                        // }, 2000);
+
+
+                        // 发送 JSON 字符串到服务器
+                        fetch('/updateCar', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: jsonArray,
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                // 处理响应数据
+                                console.log(data);
+                            //   等待响应完成，动画关闭
+                        // loading.style.display = 'none';
+                        // location.reload(); // 刷新页面
+                        
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                                //   loading.style.display = 'none';
+                                // location.reload(); // 刷新页面
+                            });
+
+                    }
+                    // 监听 beforeunload 事件，用于页面刷新或关闭
+                    // window.addEventListener('beforeunload', sendDataToServer);
+
+                </script>
+
+
+
+                <!-- 引入自定义的JavaScript文件 -->
+                <script src="javascripts/index/index.js"></script>
+
+
+                <!-- EJS导入加载html标签 -->
+                <%- include('loading.ejs') %>
+
+                <script>
+                    // 当页面被打开时，检查标记
+                    window.addEventListener('load', function () {
+                        if (sessionStorage.getItem("needsRefresh") === "true") {
+                            // 刷新页面
+
+                            location.reload();
+                            // 重置标记
+                            sessionStorage.setItem("needsRefresh", "false");
+                        }
+                    });
+
+                    // 当页面准备卸载时，设置标记
+                    window.addEventListener('beforeunload', function () {
+                        sendDataToServer();
+                        sessionStorage.setItem("needsRefresh", "true");
+                    });
+
+                </script>
+</body>
+
+</html>
